@@ -4,10 +4,12 @@ const express = require("express"),
 
 /* GET home page. */
 router.get("/", async (req, res) => {
+  const drinkData = await drinkModel.getOneCocktail();
+
   res.render("template", {
     locals: {
       title: "Drink Up",
-      sessionData: req.session
+      drinkData: drinkData
     },
     partials: {
       partial: "partial-index"
