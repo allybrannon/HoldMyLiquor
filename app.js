@@ -1,10 +1,10 @@
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const es6Renderer = require("express-es6-template-engine");
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
+const express = require("express"),
+  path = require("path"),
+  cookieParser = require("cookie-parser"),
+  logger = require("morgan"),
+  es6Renderer = require("express-es6-template-engine"),
+  session = require("express-session"),
+  FileStore = require("session-file-store")(session);
 
 const app = express();
 
