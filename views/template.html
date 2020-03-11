@@ -30,10 +30,11 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto d-flex justify-content-end">
           <li class="nav-item px-2">
-            <a class="nav-link" href="#">Tab 1</a>
+            ${ !!is_logged_in ? `<a href="/user/logout">Logout</a> ` : `
+            <a class="nav-link" href="/user/login">Login</a>
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link" href="#">Tab 2</a>
+            <a class="nav-link" href="/user/signup">Sign Up</a> `}
           </li>
         </ul>
         <form class="form-inline">
