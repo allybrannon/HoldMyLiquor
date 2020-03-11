@@ -11,7 +11,6 @@ class DrinkModel {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log("data is ", data);
       return data;
     } catch (error) {
       console.error("ERROR: ", error);
@@ -52,6 +51,15 @@ class DrinkModel {
       return response;
     } catch (error) {
       console.error("ERROR:", error);
+    }
+  }
+
+  static async searchCocktails(cocktailName) {
+    try {
+      let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`;
+      return await this.getWithAwait(url);
+    } catch (error) {
+      console.error("Error", error);
       return error;
     }
   }
