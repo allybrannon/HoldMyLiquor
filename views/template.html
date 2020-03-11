@@ -32,12 +32,23 @@
           <li class="nav-item px-2">
             <a class="nav-link" href="/drink">Drink</a>
           </li>
+          ${!!sessionData.is_logged_in ? `
           <li class="nav-item px-2">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="/user/profile/${sessionData.profile_id}"
+              >${sessionData.user_name}</a
+            >
           </li>
           <li class="nav-item px-2">
-            <a class="nav-link" href="#">Signup</a>
+            <a class="nav-link" href="/user/logout">Logout</a>
           </li>
+          `: `
+          <li class="nav-item px-2">
+            <a class="nav-link" href="/user/login">Login</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link" href="/user/signup">Signup</a>
+          </li>
+          ` }
         </ul>
         <form class="form-inline">
           <input

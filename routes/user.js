@@ -7,8 +7,8 @@ const express = require("express"),
 router.get("/signup", async (req, res, next) => {
   res.render("template", {
     locals: {
-      title: "Sign up",
-      is_logged_in: req.session.is_logged_in
+      title: "Signup",
+      sessionData: req.session
     },
     partials: {
       partial: "partial-signup"
@@ -20,7 +20,7 @@ router.get("/login", async (req, res, next) => {
   res.render("template", {
     locals: {
       title: "Login",
-      is_logged_in: req.session.is_logged_in
+      sessionData: req.session
     },
     partials: {
       partial: "partial-login"
