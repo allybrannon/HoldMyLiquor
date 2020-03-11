@@ -4,16 +4,43 @@ const express = require("express"),
 
 /* GET home page. */
 router.get("/", async (req, res) => {
-  const drinkData = await drinkModel.getOneCocktail();
-
   res.render("template", {
     locals: {
       title: "HOME",
-      drinkData: drinkData,
-      is_logged_in: req.session.is_logged_in
+      sessionData: req.session
     },
     partials: {
       partial: "partial-index"
+    }
+  });
+});
+
+/* GET drink page. */
+router.get("/drink", async (req, res) => {
+  let drinkData = await drinkModel.getOneCocktail(),
+    ingredientData = [],
+    measureData = [];
+
+  drinkData = drinkData.drinks[0];
+  for (let [key, value] of Object.entries(drinkData)) {
+    if (key.toString().substring(0, 13) === "strIngredient") {
+      ingredientData.push(value);
+    }
+    if (key.toString().substring(0, 10) === "strMeasure") {
+      measureData.push(value);
+    }
+  }
+
+  res.render("template", {
+    locals: {
+      title: "DRINK",
+      sessionData: req.session,
+      drinkData: drinkData,
+      ingredientData: ingredientData,
+      measureData: measureData
+    },
+    partials: {
+      partial: "partial-drink"
     }
   });
 });
