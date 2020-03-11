@@ -28,6 +28,33 @@ class DrinkModel {
       return error;
     }
   }
+  static async addComment(user_id, r_id, title, review, drink_id) {
+    try {
+      const response = await db.one(
+        `INSERT INTO comment (user_id, profile_id, title, review, drink_id)
+                VALUES ($1,$2,$3,$4,$5) RETURNING id`,
+        [user_id, r_id, title, review, drink_id]
+      );
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log("Error:", error);
+      return error;
+    }
+  }
+
+  static async getAllReviewsByID(id) {
+    try {
+      const response = await db.any(
+        `SELECT comment.rating, comment.title, comment.review, comment.profile_id, 
+        profile.user_name FROM comment INNER JOIN profile ON comment.profile_id = profile.id`
+      );
+      return response;
+    } catch (error) {
+      console.error("ERROR:", error);
+      return error;
+    }
+  }
 }
 
 module.exports = DrinkModel;
