@@ -29,17 +29,22 @@ class ProfileModel {
     console.log("logging in user");
     try {
       const response = await db.one(
-        `SELECT id, first_name, last_name, password FROM profile WHERE user_name = $1;`,
+        `SELECT id, first_name, last_name, user_name, password FROM profile WHERE user_name = $1;`,
         [this.user_name]
       );
       const isValid = this.checkPassword(response.password);
       if (!!isValid) {
-        const { id, first_name, last_name } = response;
-        return { isValid, user_id: id, first_name, last_name };
+        const { id, first_name, last_name, user_name } = response;
+        return {
+          isValid,
+          profile_id: id,
+          first_name,
+          last_name,
+          user_name
+        };
       } else {
         return { isValid };
       }
-      return isValid;
     } catch (error) {
       console.error("Error: ", error);
       return error;

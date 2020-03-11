@@ -7,8 +7,8 @@ const express = require("express"),
 router.get("/signup", async (req, res, next) => {
   res.render("template", {
     locals: {
-      title: "Sign up",
-      is_logged_in: req.session.is_logged_in
+      title: "Signup",
+      sessionData: req.session
     },
     partials: {
       partial: "partial-signup"
@@ -20,7 +20,7 @@ router.get("/login", async (req, res, next) => {
   res.render("template", {
     locals: {
       title: "Login",
-      is_logged_in: req.session.is_logged_in
+      sessionData: req.session
     },
     partials: {
       partial: "partial-login"
@@ -38,6 +38,7 @@ router.post("/login", async function(req, res, next) {
   if (!!loginResponse.isValid) {
     req.session.is_logged_in = loginResponse.isValid;
     req.session.profile_id = loginResponse.profile_id;
+    req.session.user_name = loginResponse.user_name;
     req.session.first_name = loginResponse.first_name;
     req.session.last_name = loginResponse.last_name;
     res.status(200).redirect("/");
