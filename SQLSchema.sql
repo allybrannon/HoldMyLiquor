@@ -1,7 +1,7 @@
 CREATE DATABASE holdmyliquor;
 
 
-CREATE TABLE review
+CREATE TABLE comment
 (
     id SERIAL PRIMARY KEY,
     user_id integer NOT NULL REFERENCES profile(id) REFERENCES favorite(id),
