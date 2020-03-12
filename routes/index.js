@@ -15,22 +15,6 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("/search/:cocktailName?", async (req, res) => {
-  const { cocktailName } = req.params;
-  const drinkData = await drinkModel.searchCocktails(cocktailName);
-  console.log("DRINK DATA =", drinkData);
-
-  res.render("template", {
-    locals: {
-      title: "Results Page",
-      drinkData: drinkData
-    },
-    partials: {
-      partial: "partial-result"
-    }
-  });
-});
-
 /* GET drink page. */
 router.get("/drink", async (req, res) => {
   let drinkData = await drinkModel.getOneCocktail(),
@@ -63,17 +47,6 @@ router.get("/drink", async (req, res) => {
   });
 });
 
-router.post("/search", async (req, res) => {
-  const { cocktailName } = req.body;
-  console.log("POST DATA =", cocktailName);
-  const url = `/search/${cocktailName}`;
-  if (!!cocktailName) {
-    res.redirect(url);
-  } else {
-    res.redirect("/");
-  }
-});
-
 router.post("/", async function(req, res) {
   console.log("req body:", req.body);
   const profile_id = req.session.profile_id;
@@ -87,6 +60,28 @@ router.post("/", async function(req, res) {
   );
   console.log(postData);
   res.sendStatus(200);
+});
+/* get Search Results page*/
+router.get("/search/:cocktailName?", async (req, res) => {
+  const { cocktailName } = req.params;
+  const drinkData = await drinkModel.searchCocktails(cocktailName);
+
+  res.render("template", {
+    locals: {
+      title: "Results Page",
+      drinkData: drinkData,
+      sessionData: req.session
+    },
+    partials: {
+      partial: "partial-result"
+    }
+  });
+});
+
+router.post("/search/:cocktailName?", async (req, res) => {
+  const { cocktailName } = req.body;
+  const url = `/search/${cocktailName}`;
+  !!cocktailName ? res.redirect(url) : res.redirect("/");
 });
 
 module.exports = router;

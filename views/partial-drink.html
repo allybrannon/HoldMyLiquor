@@ -5,16 +5,16 @@
 </p>
 <div class="container-lg drink-info">
     <div class="drink-container">
-        <image class="img-fluid" src="${drinkData.strDrinkThumb}"/>
+        <image class="img-fluid" src="${drinkData.strDrinkThumb}" />
     </div>
     <div class="drink-container">
         <hr />
         <h3>Ingredients</h3>
         <ul>
-        ${ingredientData.map( ingredient => `${!!ingredient ? `
-        <li>${ingredient}` : ``}
-            ${!!measureData[ingredientData.indexOf(ingredient)] ?
-            `- ${measureData[ingredientData.indexOf(ingredient)]}</li>` : `</li>` }`).join("")}
+            ${ingredientData.map( ingredient => `${!!ingredient ? `
+            <li>${ingredient}` : ``}
+                ${!!measureData[ingredientData.indexOf(ingredient)] ?
+                `- ${measureData[ingredientData.indexOf(ingredient)]}</li>` : `</li>` }`).join("")}
         </ul>
         <hr>
         <h3>Instructions</h3>

@@ -23,7 +23,7 @@ class DrinkModel {
       let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007`;
       return await this.getWithAwait(url);
     } catch (error) {
-      console.error("ERROR: ", error);
+      console.error("ERROR:", error);
       return error;
     }
   }
@@ -60,6 +60,15 @@ class DrinkModel {
       return await this.getWithAwait(url);
     } catch (error) {
       console.error("Error", error);
+      return error;
+    }
+  }
+  static async searchById(id) {
+    try {
+      let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+      return await this.getWithAwait(url);
+    } catch (error) {
+      console.error("ERROR", error);
       return error;
     }
   }
