@@ -6,6 +6,7 @@ const express = require("express"),
   session = require("express-session"),
   FileStore = require("session-file-store")(session);
 
+
 const app = express();
 
 app.use(logger("dev"));
@@ -32,8 +33,10 @@ app.set("view engine", "html");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+const favoriteRouter = require('./routes/favorite');
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
+app.use('/favorite', favoriteRouter);
 
 module.exports = app;
