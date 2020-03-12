@@ -2,7 +2,6 @@ const express = require("express"),
   router = express.Router(),
   drinkModel = require("../models/drinkModel");
 
-
 /* GET home page. */
 router.get("/", async (req, res) => {
   res.render("template", {
@@ -14,26 +13,6 @@ router.get("/", async (req, res) => {
       partial: "partial-index"
     }
   });
-});
-
-
-
-router.get("/search/:cocktailName?", async (req, res) => {
-  const {
-    cocktailName
-  } = req.params;
-  const drinkData = await drinkModel.searchCocktails(cocktailName);
-  console.log('DRINK DATA =', drinkData)
-
-  res.render("template", {
-    locals: {
-      title: "Results Page",
-      drinkData: drinkData
-    },
-    partials: {
-      partial: "partial-result"
-    }
-  })
 });
 
 /* GET drink page. */
@@ -66,20 +45,65 @@ router.get("/drink", async (req, res) => {
   });
 });
 
+/* get Search Results page*/
+router.get("/search/:cocktailName?", async (req, res) => {
+  const {
+    cocktailName
+  } = req.params;
+  const drinkData = await drinkModel.searchCocktails(cocktailName);
 
+  res.render("template", {
+    locals: {
+      title: "Results Page",
+      drinkData: drinkData,
+      sessionData: req.session
+    },
+    partials: {
+      partial: "partial-result"
+    }
+  });
+});
 
-
-router.post('/search', async (req, res) => {
+router.post("/search/:cocktailName?", async (req, res) => {
   const {
     cocktailName
   } = req.body;
-  console.log('POST DATA =', cocktailName)
   const url = `/search/${cocktailName}`;
-  if (!!cocktailName) {
-    res.redirect(url);
-  } else {
-    res.redirect('/');
-  }
-})
+  (!!cocktailName) ? res.redirect(url): res.redirect('/')
+});
+
+/*Get Search by Id page*/
+router.get("/search/:id?", async (req, res) => {
+  const {
+    id
+  } = req.params;
+  const drinkData = await drinkModel.searchById(id);
+  console.log("DRINK DATA =", id);
+
+  res.render("template", {
+    locals: {
+      title: "Results Page",
+      drinkData: drinkData,
+      sessionData: req.session
+    },
+    partials: {
+      partial: "partial-searchInfo"
+    }
+  });
+});
+
+router.post("/search/:id?", async (req, res) => {
+  const {
+    id
+  } = req.body;
+  const url = `/search/${id}`;
+  (!!id) ? res.redirect(url): res.redirect('/')
+});
+
+
+
+
+
+
 
 module.exports = router;
