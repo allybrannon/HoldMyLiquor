@@ -16,9 +16,10 @@ router.get("/", async (req, res) => {
 });
 
 /* GET drink page. */
-router.get("/drink", async (req, res) => {
-  let drinkData = await drinkModel.getOneCocktail(),
-    getComments = await drinkModel.getAllCommentsByID(1),
+router.get("/drink/:id?", async (req, res) => {
+  let { id } = req.params;
+  let drinkData = await drinkModel.getOneCocktail(id),
+    getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
     measureData = [];
 

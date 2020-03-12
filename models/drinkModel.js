@@ -18,9 +18,9 @@ class DrinkModel {
     }
   }
 
-  static async getOneCocktail() {
+  static async getOneCocktail(id) {
     try {
-      let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007`;
+      let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       return await this.getWithAwait(url);
     } catch (error) {
       console.error("ERROR:", error);
@@ -46,7 +46,8 @@ class DrinkModel {
     try {
       const response = await db.any(
         `SELECT comment.rating, comment.title, comment.review, comment.profile_id, 
-        profile.user_name FROM comment INNER JOIN profile ON comment.profile_id = profile.id`
+        profile.user_name FROM comment INNER JOIN profile ON comment.profile_id = profile.id
+        WHERE comment.drink_id = ${id}`
       );
       return response;
     } catch (error) {
@@ -65,7 +66,7 @@ class DrinkModel {
   }
   static async searchById(id) {
     try {
-      let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
+      let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       return await this.getWithAwait(url);
     } catch (error) {
       console.error("ERROR", error);

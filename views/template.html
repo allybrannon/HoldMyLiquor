@@ -15,7 +15,12 @@
 
   <body>
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">HoldMyLiquor</a>
+      <a class="navbar-brand" href="/"
+        ><img
+          class="navbar-img"
+          src="/images/shaken-stirred-green.png"
+        />HoldMyLiquor</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -30,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav ml-auto d-flex justify-content-end">
           <li class="nav-item px-2">
-            <a class="nav-link" href="/drink">Drink</a>
+            <a class="nav-link" href="/drink">Explore</a>
           </li>
           ${!!sessionData.is_logged_in ? `
           <li class="nav-item px-2">
@@ -68,8 +73,8 @@
         </form>
       </div>
     </nav>
-    <div class="container-lg">
-      <h1>${title}</h1>
+    <div class="container-lg main">
+      <!-- <h1>${title}</h1> -->
       <div>${partial}</div>
     </div>
   </body>

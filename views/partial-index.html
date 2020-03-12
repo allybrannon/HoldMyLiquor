@@ -1,1 +1,25 @@
-<h1>KANYE SAYS... get MVP done so y'all can give me some attention</h1>
+<div class="container-lg">
+  <div class="hero-container">
+    <img class="drink-container" src="/images/cocktails-lineup.png" />
+    <h1 class="text-white">
+      HoldMyLiquor
+    </h1>
+    ${!!sessionData.is_logged_in ? `
+    <h2 class="text-white">Welcome back ${sessionData.user_name}</h2>
+    `: `` }
+  </div>
+  <div class="hero-container">
+    ${!!sessionData.is_logged_in ? `
+    <h2 class="text-white">Here are some of your favorite drinks...</h2>
+    <h3 class="text-white">--Placeholder--</h3>
+    `: `` }
+  </div>
+  <div class="hero-container">
+    <div class="hero-container text-white">
+      <h4>
+        <a class="text-white action-hover-link" href="/drink">Explore</a> |
+        <a class="text-white action-hover-link" href="/random">Random</a>
+      </h4>
+    </div>
+  </div>
+</div>
