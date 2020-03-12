@@ -1,7 +1,10 @@
 <h2 class="text-white">${drinkData.strDrink}</h2>
 <p class="text-white">Tags:
-    <span class="badge badge-secondary">${drinkData.strIBA}</span>
-    <span class="badge badge-secondary">${drinkData.strAlcoholic}</span>
+  ${!!drinkData.strAlcoholic ? `<span class="badge
+  badge-secondary">${drinkData.strAlcoholic}</span>` : ``}
+  ${!!drinkData.strIBA ? `<span class="badge
+  badge-secondary">${drinkData.strIBA}</span>` : `<span class="badge
+    badge-secondary">Unknown Category</span>`}
 </p>
 <div class="container-lg drink-info">
     <div class="drink-container">
@@ -70,7 +73,7 @@
         <h2>User Comments</h2>
         <h3>Comment Title: ${comment.title}</h3>
         <p>Review: ${comment.review}</p>
-        <p>User Rating: ${comment.rating}</p>
+        <p>User Rating: ${`<i class="fas fa-star text-warning"></i>`.repeat(Number(comment.rating))}</p>
         <p>User Name: ${comment.user_name}</p>
         
         ` }).join('')}
