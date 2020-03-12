@@ -27,12 +27,12 @@ class DrinkModel {
       return error;
     }
   }
-  static async addComment(user_id, r_id, title, review, drink_id) {
+  static async addComment(profile_id, rating, title, review, drink_id) {
     try {
       const response = await db.one(
-        `INSERT INTO comment (user_id, profile_id, title, review, drink_id)
+        `INSERT INTO comment (profile_id, rating, title, review, drink_id)
                 VALUES ($1,$2,$3,$4,$5) RETURNING id`,
-        [user_id, r_id, title, review, drink_id]
+        [profile_id, rating, title, review, drink_id]
       );
       console.log(response);
       return response;
@@ -42,7 +42,7 @@ class DrinkModel {
     }
   }
 
-  static async getAllReviewsByID(id) {
+  static async getAllCommentsByID(id) {
     try {
       const response = await db.any(
         `SELECT comment.rating, comment.title, comment.review, comment.profile_id, 
