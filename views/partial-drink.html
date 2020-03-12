@@ -1,5 +1,5 @@
-<h2>${drinkData.strDrink}</h2>
-<p>Tags:
+<h2 class="text-white">${drinkData.strDrink}</h2>
+<p class="text-white">Tags:
     <span class="badge badge-secondary">${drinkData.strIBA}</span>
     <span class="badge badge-secondary">${drinkData.strAlcoholic}</span>
 </p>
@@ -8,7 +8,6 @@
         <image class="img-fluid" src="${drinkData.strDrinkThumb}"/>
     </div>
     <div class="drink-container">
-        <hr />
         <h3>Ingredients</h3>
         <ul>
         ${ingredientData.map( ingredient => `${!!ingredient ? `
@@ -20,6 +19,5 @@
         <h3>Instructions</h3>
         <p><em>Recommended: serve in a ${drinkData.strGlass}</em></p>
         <p>${drinkData.strInstructions}</p>
-        <hr />
     </div>
 </div>

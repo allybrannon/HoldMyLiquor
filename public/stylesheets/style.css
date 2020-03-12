@@ -1,17 +1,52 @@
 body {
-  padding: 5px;
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  background: url("/images/party-glasses-green.png") no-repeat top left fixed;
+  background: cover;
 }
 
 a {
-  color: #00b7ff;
+  color: rgb(0, 183, 255);
+}
+
+.navbar-brand {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center;
+}
+
+.navbar-img {
+  height: 40px;
+  padding-right: 5px;
+}
+
+.main {
+  padding-top: 100px;
+}
+.action-hover-link {
+  padding: 3px 5px;
+  line-height: 1;
+}
+
+.action-hover-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-size: 1.05em;
+  margin: auto;
+}
+
+.hero-container {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .drink-container {
   min-width: 300px;
   width: 40%;
   max-width: 500px;
-  padding: 5px;
+  padding: 8px;
 }
 
 .drink-info {
