@@ -61,9 +61,9 @@ class DrinkModel {
       return await this.getWithAwait(url);
     } catch (error) {
       console.error("Error", error);
-      return error;
     }
   }
+
   static async searchById(id) {
     try {
       let url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;

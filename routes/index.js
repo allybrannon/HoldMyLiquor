@@ -68,12 +68,12 @@ router.post("/", async function(req, res) {
 /* GET Search Results page */
 router.get("/search/:cocktailName?", async (req, res) => {
   const { cocktailName } = req.params;
-  const drinkData = await drinkModel.searchCocktails(cocktailName);
+  let searchData = await drinkModel.searchCocktails(cocktailName);
 
   res.render("template", {
     locals: {
       title: "Results Page",
-      drinkData: drinkData,
+      searchData: searchData,
       sessionData: req.session
     },
     partials: {
@@ -85,8 +85,13 @@ router.get("/search/:cocktailName?", async (req, res) => {
 /* POST redirect search to Search Results page */
 router.post("/search/:cocktailName?", async (req, res) => {
   const { cocktailName } = req.body;
-  const redirectUrl = `/search/${cocktailName}`;
-  !!cocktailName ? res.redirect(redirectUrl) : res.redirect("/");
+  let redirectUrl = `/search/${cocktailName}`;
+  try {
+    !!cocktailName ? res.redirect(redirectUrl) : res.redirect("/");
+  } catch (error) {
+    console.error("ERROR: ", error);
+    res.redirect("/");
+  }
 });
 
 module.exports = router;
