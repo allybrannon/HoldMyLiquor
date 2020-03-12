@@ -73,12 +73,13 @@ router.post("/search/:cocktailName?", async (req, res) => {
 });
 
 /*Get Search by Id page*/
-router.get("/search/:id?", async (req, res) => {
+router.get("/search/:cocktail/:id?", async (req, res) => {
+
   const {
     id
   } = req.params;
   const drinkData = await drinkModel.searchById(id);
-  console.log("DRINK DATA =", id);
+  console.log("DRINK DATA =", drinkData);
 
   res.render("template", {
     locals: {
@@ -90,14 +91,6 @@ router.get("/search/:id?", async (req, res) => {
       partial: "partial-searchInfo"
     }
   });
-});
-
-router.post("/search/:id?", async (req, res) => {
-  const {
-    id
-  } = req.body;
-  const url = `/search/${id}`;
-  (!!id) ? res.redirect(url): res.redirect('/')
 });
 
 
