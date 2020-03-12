@@ -62,6 +62,7 @@ router.post("/", async function(req, res) {
   console.log(postData);
   res.sendStatus(200);
 });
+
 /* get Search Results page*/
 router.get("/search/:cocktailName?", async (req, res) => {
   const { cocktailName } = req.params;

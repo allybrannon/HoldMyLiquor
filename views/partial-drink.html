@@ -26,7 +26,7 @@
   ${!!sessionData.is_logged_in ? `
       <h2>Leave your comments and drink rating:</h2>
       <form action="/" method="POST">
-        <input type="hidden" name="drink_id" value ="1"/>
+        <input type="hidden" name="drink_id" value ="${drinkData.idDrink}"/>
         <label
           >Title
           <input type="text" name="comment_title" placeholder="Comment Title" />
@@ -41,7 +41,7 @@
       </br>
         <p>Rate this drink(1= Bad, 5= Great)</p>
         <label>
-          <input type="radio" id=1 value=1 name="rating"/> 1
+          <input type="radio" value=1 name="rating"/> 1
         </label>
         <label>
           <input type="radio" value=2 name="rating"/> 2
