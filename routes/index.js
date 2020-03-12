@@ -2,7 +2,6 @@ const express = require("express"),
   router = express.Router(),
   drinkModel = require("../models/drinkModel");
 
-
 /* GET home page. */
 router.get("/", async (req, res) => {
   res.render("template", {
@@ -16,29 +15,11 @@ router.get("/", async (req, res) => {
   });
 });
 
-
-
-router.get("/search/:cocktailName?", async (req, res) => {
-  const {
-    cocktailName
-  } = req.params;
-  const drinkData = await drinkModel.searchCocktails(cocktailName);
-  console.log('DRINK DATA =', drinkData)
-
-  res.render("template", {
-    locals: {
-      title: "Results Page",
-      drinkData: drinkData
-    },
-    partials: {
-      partial: "partial-result"
-    }
-  })
-});
-
 /* GET drink page. */
-router.get("/drink", async (req, res) => {
-  let drinkData = await drinkModel.getOneCocktail(),
+router.get("/drink/:id?", async (req, res) => {
+  let { id } = req.params;
+  let drinkData = await drinkModel.getOneCocktail(id),
+    getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
     measureData = [];
 
@@ -58,7 +39,8 @@ router.get("/drink", async (req, res) => {
       sessionData: req.session,
       drinkData: drinkData,
       ingredientData: ingredientData,
-      measureData: measureData
+      measureData: measureData,
+      getComments: getComments
     },
     partials: {
       partial: "partial-drink"
@@ -66,20 +48,41 @@ router.get("/drink", async (req, res) => {
   });
 });
 
+router.post("/", async function(req, res) {
+  console.log("req body:", req.body);
+  const profile_id = req.session.profile_id;
+  const { drink_id, comment_title, comment_review, rating } = req.body;
+  const postData = await drinkModel.addComment(
+    profile_id,
+    rating,
+    comment_title,
+    comment_review,
+    drink_id
+  );
+  console.log(postData);
+  res.sendStatus(200);
+});
+/* get Search Results page*/
+router.get("/search/:cocktailName?", async (req, res) => {
+  const { cocktailName } = req.params;
+  const drinkData = await drinkModel.searchCocktails(cocktailName);
 
+  res.render("template", {
+    locals: {
+      title: "Results Page",
+      drinkData: drinkData,
+      sessionData: req.session
+    },
+    partials: {
+      partial: "partial-result"
+    }
+  });
+});
 
-
-router.post('/search', async (req, res) => {
-  const {
-    cocktailName
-  } = req.body;
-  console.log('POST DATA =', cocktailName)
+router.post("/search/:cocktailName?", async (req, res) => {
+  const { cocktailName } = req.body;
   const url = `/search/${cocktailName}`;
-  if (!!cocktailName) {
-    res.redirect(url);
-  } else {
-    res.redirect('/');
-  }
-})
+  !!cocktailName ? res.redirect(url) : res.redirect("/");
+});
 
 module.exports = router;

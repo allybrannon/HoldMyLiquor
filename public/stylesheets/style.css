@@ -36,6 +36,10 @@ a {
   margin: auto;
 }
 
+.container-lg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .hero-container {
   text-align: center;
   padding-top: 10px;
