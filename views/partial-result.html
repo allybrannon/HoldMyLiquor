@@ -1,6 +1,6 @@
 <h1>Search Page</h1>
 <ul>
-    ${drinkData.drinks.map(drink =>`<a href="/search/cocktail/${drink.idDrink}">
+    ${drinkData.drinks.map(drink =>`<a href="/drink/${drink.idDrink}">
         <li>${drink.strDrink}</li>
     </a>`).join(' ')}
 </ul>
