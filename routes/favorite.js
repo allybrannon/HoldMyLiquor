@@ -1,7 +1,7 @@
 const express = require("express"),
     router = express.Router(),
     drinkModel = require("../models/drinkModel"),
-    favoriteModel = require('../models/favoriteModel')
+    favoriteModel = require('../models/favoriteModel');
 
 
 

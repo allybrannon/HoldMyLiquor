@@ -1,7 +1,7 @@
 const express = require("express"),
   router = express.Router(),
   drinkModel = require("../models/drinkModel"),
-  favoriteModel = require('../models/favoriteModel')
+  favoriteModel = require('../models/favoriteModel');
 
 /* GET home page. */
 router.get("/", async (req, res) => {
@@ -60,6 +60,7 @@ router.post("/", async function (req, res) {
     comment_review,
     rating
   } = req.body;
+  const redirectUrl = `/drink/${drink_id}`;
   const postData = await drinkModel.addComment(
     profile_id,
     rating,
@@ -70,7 +71,7 @@ router.post("/", async function (req, res) {
   if (rating == 5 || rating == 4) {
     const favoriteData = await favoriteModel.addFavorite(profile_id, drink_id);
   }
-  console.log(postData);
+  res.redirect(redirectUrl);
   res.sendStatus(200);
 });
 
