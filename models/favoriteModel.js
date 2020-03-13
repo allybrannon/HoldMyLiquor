@@ -9,9 +9,9 @@ class Favorite {
         this.drink_id = drink_id;
 
     }
-    static async getUserStuff() {
+    static async getUserStuff(profile_id, drink_id) {
         try {
-            const response = await db.one(`INSERT INTO favorite (profile_id, drink_id) VALUES ($1, $2) RETURN id;`, [this.profile_id, this.drink_id]);
+            const response = await db.one(`INSERT INTO favorite (profile_id, drink_id) VALUES ($1, $2) RETURNING id;`, [profile_id, drink_id]);
             console.log('Favorite RESPONSE =', response);
             return response;
         } catch (error) {
