@@ -67,6 +67,9 @@ router.post("/", async function (req, res) {
     comment_review,
     drink_id
   );
+  if (rating == 5 || rating == 4) {
+    const favoriteData = await favoriteModel.getUserStuff(profile_id, drink_id);
+  }
   console.log(postData);
   res.sendStatus(200);
 });
@@ -97,13 +100,6 @@ router.post("/search/:cocktailName?", async (req, res) => {
   !!cocktailName ? res.redirect(url) : res.redirect("/");
 });
 
-router.post('/drink/:id', (req, res) => {
-  const {
-    profile_id,
-    drink_id
-  } = req.body
-  console.log("req body = ", req.body);
-  favoriteModel.getUserStuff();
-})
+
 
 module.exports = router;
