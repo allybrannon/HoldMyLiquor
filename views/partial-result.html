@@ -1,8 +1,10 @@
-<div class="text-white">
-    <h1>Search Page</h1>
-    <ul>
-        ${drinkData.drinks.map(drink =>`<a href="/drink/${drink.idDrink}">
-            <li>${drink.strDrink}</li>
-        </a>`).join(' ')}
-    </ul>
+<div class="lg-container text-white">
+  <h1>Search Page</h1>
+  <div class="list-group">
+    ${!!searchData.drinks ? searchData.drinks.map(drink => `
+    <a href="/drink/${drink.idDrink}" class="list-group-item">
+      ${drink.strDrink}
+    </a>
+    `).join(' ') : `No results found.`}
+  </div>
 </div>
