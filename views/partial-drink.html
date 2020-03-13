@@ -64,13 +64,13 @@
       
       <p><button type="submit" class="btn btn-outline-success my-2 my-sm-0">Save</button></p>
     </form>
-      ` : `<h4>Please <a href="/login" class="text-white">login</a> to submit comments and ratings</h4>
+      ` : `<h4>Please <a href="/user/login" class="text-white">LOGIN</a> to submit comments and ratings</h4>
           ` }
     </div>
 ​
 <div class="container-lg text-white">
       <h3 class="user-comment">User Comments</h3>
-      ${!!getComments[0] ? `` : `<p>No comments...yet!</p>
+      ${!!getComments[0] ? `` : `<p>No comments... yet!</p>
       <p>If you've tried this
       drink, we want to hear from you. &#128578</p>`}
       ${getComments.map(comment => { return `
@@ -78,7 +78,7 @@
         <p><strong>Review: </strong>${comment.review}</p>
         <p><strong>User Rating: </strong>${`<i class="fas fa-star text-warning"></i>`.repeat(Number(comment.rating))}</p>
         <p><strong>User Name: </strong>${comment.user_name}</p>
-        <hr>
+        <hr class="background-white">
         ` }).join('')}
         
 </div>

@@ -102,6 +102,25 @@ router.post("/search/:cocktailName?", async (req, res) => {
   }
 });
 
+/* GET Explore page */
+router.get("/explore/:letter?", async (req, res) => {
+  let { letter } = req.params;
+  let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+  let exploreData = await drinkModel.exploreCocktails(letter);
+
+  res.render("template", {
+    locals: {
+      title: "Explore",
+      sessionData: req.session,
+      alphabet: alphabet,
+      exploreData: exploreData
+    },
+    partials: {
+      partial: "partial-explore"
+    }
+  });
+});
+
 /* GET Random Results page */
 router.get("/random", async (req, res) => {
   let randomCocktail = await drinkModel.getRandomCocktail();
