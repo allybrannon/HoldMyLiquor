@@ -27,46 +27,50 @@
 ​
 <div class="container-lg text-white">
   ${!!sessionData.is_logged_in ? `
-      <h2>Leave your comments and drink rating:</h2>
+      <h3>Leave your comments and drink rating:</h3>
       <form action="/" method="POST">
-        <input type="hidden" name="drink_id" value ="${drinkData.idDrink}"/>
-        <label
-          >Title
-          <input type="text" name="comment_title" placeholder="Comment Title" />
-        </label>
+
+      <div class="form-group">
+        <input type="hidden" class="form-control" name="drink_id" value ="${drinkData.idDrink}"/>
+          <label
+            >Title
+            <input type="text" class="form-control" name="comment_title" placeholder="Comment Title" />
+          </label>
+      </div>
+
+      <div class="form-group">
         <label
           >My Comments:
           <textarea
-            name="comment_review"
+            name="comment_review" class="form-control"
             placeholder="My review of this drink..."
           ></textarea>
         </label>
-      </br>
-        <p>Rate this drink(1= Bad, 5= Great)</p>
-        <label>
-          <input type="radio" value=1 name="rating"/> 1
-        </label>
-        <label>
-          <input type="radio" value=2 name="rating"/> 2
-        </label>
-        <label>
-          <input type="radio" value=3 name="rating"/> 3
-        </label>
-        <label>
-          <input type="radio" value=4 name="rating"/> 4
-        </label>
-        <label>
-          <input type="radio" value=5 name="rating"/> 5 
-        </label>
-        <p><button type="submit">Save</button></p>
-      </form>
+      </div>
+
+      <p>Rate this drink:</p>
+      <div class="stars form-group">
+        <input class="star star-1" id="star-1" type="radio" value=5 name="rating"/>
+        <label class="star star-1" for="star-1"></label>
+        <input class="star star-2" id="star-2" type="radio" value=4 name="rating"/>
+        <label class="star star-2" for="star-2"></label>
+        <input class="star star-3" id="star-3" type="radio" value=3 name="rating"/>
+        <label class="star star-3" for="star-3"></label>
+        <input class="star star-4" id="star-4" type="radio" value=2 name="rating"/>
+        <label class="star star-4" for="star-4"></label>
+        <input class="star star-5" id="star-5" type="radio" value=1 name="rating"/>
+        <label class="star star-5" for="star-5"></label>
+      </div>
+      
+      <p><button type="submit" class="btn btn-outline-success my-2 my-sm-0">Save</button></p>
+    </form>
       ` : `<h4>Please login to submit comments and ratings</h4>
           ` }
     </div>
 ​
 <div class="container-lg text-white">
-      ${getComments.map(comment => { return `
         <h2>User Comments</h2>
+      ${getComments.map(comment => { return `
         <h3>Comment Title: ${comment.title}</h3>
         <p>Review: ${comment.review}</p>
         <p>User Rating: ${`<i class="fas fa-star text-warning"></i>`.repeat(Number(comment.rating))}</p>
