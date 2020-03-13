@@ -51,6 +51,7 @@ router.get("/drink/:id?", async (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 router.post("/", async function (req, res) {
   console.log("req body:", req.body);
   const profile_id = req.session.profile_id;
@@ -60,6 +61,14 @@ router.post("/", async function (req, res) {
     comment_review,
     rating
   } = req.body;
+=======
+/* POST comments to drink page */
+router.post("/", async function(req, res) {
+  console.log("req body:", req.body);
+  const profile_id = req.session.profile_id;
+  const { drink_id, comment_title, comment_review, rating } = req.body;
+  const redirectUrl = `/drink/${drink_id}`;
+>>>>>>> 3e51ac82f836236f4f13e7ae73345c014d1c64cc
   const postData = await drinkModel.addComment(
     profile_id,
     rating,
@@ -67,13 +76,19 @@ router.post("/", async function (req, res) {
     comment_review,
     drink_id
   );
+<<<<<<< HEAD
   if (rating == 5 || rating == 4) {
     const favoriteData = await favoriteModel.getUserStuff(profile_id, drink_id);
   }
   console.log(postData);
   res.sendStatus(200);
+=======
+
+  res.redirect(redirectUrl);
+>>>>>>> 3e51ac82f836236f4f13e7ae73345c014d1c64cc
 });
-/* get Search Results page*/
+
+/* GET Search Results page */
 router.get("/search/:cocktailName?", async (req, res) => {
   const {
     cocktailName
@@ -92,12 +107,19 @@ router.get("/search/:cocktailName?", async (req, res) => {
   });
 });
 
+/* POST redirect search to Search Results page */
 router.post("/search/:cocktailName?", async (req, res) => {
+<<<<<<< HEAD
   const {
     cocktailName
   } = req.body;
   const url = `/search/${cocktailName}`;
   !!cocktailName ? res.redirect(url) : res.redirect("/");
+=======
+  const { cocktailName } = req.body;
+  const redirectUrl = `/search/${cocktailName}`;
+  !!cocktailName ? res.redirect(redirectUrl) : res.redirect("/");
+>>>>>>> 3e51ac82f836236f4f13e7ae73345c014d1c64cc
 });
 
 
