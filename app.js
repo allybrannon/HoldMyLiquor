@@ -33,10 +33,12 @@ app.set("view engine", "html");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
-const favoriteRouter = require('./routes/favorite');
+const favoriteRouter = require("./routes/favorite");
+const aboutRouter = require("./routes/about");
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use('/favorite', favoriteRouter);
+app.use("/about", aboutRouter);
 
 module.exports = app;
