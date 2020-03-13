@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
         profile_id,
         drink_id,
     } = req.body;
-    const response = await favoriteModel.getUserStuff();
+    const response = await favoriteModel.addFavorite();
     return response;
 });
 
