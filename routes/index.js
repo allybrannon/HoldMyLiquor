@@ -1,6 +1,7 @@
 const express = require("express"),
   router = express.Router(),
-  drinkModel = require("../models/drinkModel");
+  drinkModel = require("../models/drinkModel"),
+  favoriteModel = require('../models/favoriteModel')
 
 /* GET home page. */
 router.get("/", async (req, res) => {
@@ -17,7 +18,9 @@ router.get("/", async (req, res) => {
 
 /* GET drink page. */
 router.get("/drink/:id?", async (req, res) => {
-  let { id } = req.params;
+  let {
+    id
+  } = req.params;
   let drinkData = await drinkModel.getOneCocktail(id),
     getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
@@ -48,10 +51,15 @@ router.get("/drink/:id?", async (req, res) => {
   });
 });
 
-router.post("/", async function(req, res) {
+router.post("/", async function (req, res) {
   console.log("req body:", req.body);
   const profile_id = req.session.profile_id;
-  const { drink_id, comment_title, comment_review, rating } = req.body;
+  const {
+    drink_id,
+    comment_title,
+    comment_review,
+    rating
+  } = req.body;
   const postData = await drinkModel.addComment(
     profile_id,
     rating,
@@ -64,7 +72,9 @@ router.post("/", async function(req, res) {
 });
 /* get Search Results page*/
 router.get("/search/:cocktailName?", async (req, res) => {
-  const { cocktailName } = req.params;
+  const {
+    cocktailName
+  } = req.params;
   const drinkData = await drinkModel.searchCocktails(cocktailName);
 
   res.render("template", {
@@ -80,9 +90,20 @@ router.get("/search/:cocktailName?", async (req, res) => {
 });
 
 router.post("/search/:cocktailName?", async (req, res) => {
-  const { cocktailName } = req.body;
+  const {
+    cocktailName
+  } = req.body;
   const url = `/search/${cocktailName}`;
   !!cocktailName ? res.redirect(url) : res.redirect("/");
 });
+
+router.post('/drink/:id', (req, res) => {
+  const {
+    profile_id,
+    drink_id
+  } = req.body
+  console.log("req body = ", req.body);
+  favoriteModel.getUserStuff();
+})
 
 module.exports = router;
