@@ -27,6 +27,7 @@ class DrinkModel {
       return error;
     }
   }
+
   static async addComment(profile_id, rating, title, review, drink_id) {
     try {
       const response = await db.one(
@@ -70,7 +71,17 @@ class DrinkModel {
       console.error("ERROR", error);
       return error;
     }
-  }
+  };
+
+  static async getRandomCocktail() {
+    try {
+      let url = `https://www.thecocktaildb.com/api/json/v1/1/random.php`;
+      return await this.getWithAwait(url);
+    } catch (error) {
+      console.error("ERROR", error);
+      return error;
+    }
+  };
 }
 
 module.exports = DrinkModel;

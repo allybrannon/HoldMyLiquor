@@ -18,9 +18,7 @@ router.get("/", async (req, res) => {
 
 /* GET drink page. */
 router.get("/drink/:id?", async (req, res) => {
-  let {
-    id
-  } = req.params;
+  let { id } = req.params;
   let drinkData = await drinkModel.getOneCocktail(id),
     getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
@@ -102,6 +100,15 @@ router.post("/search/:cocktailName?", async (req, res) => {
     console.error("ERROR: ", error);
     res.redirect("/");
   }
+});
+
+/* GET Random Results page */
+router.get("/random", async (req, res) => {
+  let randomCocktail = await drinkModel.getRandomCocktail();
+  console.log(randomCocktail);
+  let cocktailId = randomCocktail.drinks[0].idDrink;
+
+  res.redirect(`/drink/${cocktailId}`);
 });
 
 module.exports = router;
