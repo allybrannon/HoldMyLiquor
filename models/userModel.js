@@ -34,7 +34,12 @@ class ProfileModel {
       );
       const isValid = this.checkPassword(response.password);
       if (!!isValid) {
-        const { id, first_name, last_name, user_name } = response;
+        const {
+          id,
+          first_name,
+          last_name,
+          user_name
+        } = response;
         return {
           isValid,
           profile_id: id,
@@ -43,7 +48,9 @@ class ProfileModel {
           user_name
         };
       } else {
-        return { isValid };
+        return {
+          isValid
+        };
       }
     } catch (error) {
       console.error("Error: ", error);

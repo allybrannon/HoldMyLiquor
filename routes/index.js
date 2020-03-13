@@ -1,6 +1,7 @@
 const express = require("express"),
   router = express.Router(),
-  drinkModel = require("../models/drinkModel");
+  drinkModel = require("../models/drinkModel"),
+  favoriteModel = require('../models/favoriteModel');
 
 /* GET home page. */
 router.get("/", async (req, res) => {
@@ -17,7 +18,9 @@ router.get("/", async (req, res) => {
 
 /* GET drink page. */
 router.get("/drink/:id?", async (req, res) => {
-  let { id } = req.params;
+  let {
+    id
+  } = req.params;
   let drinkData = await drinkModel.getOneCocktail(id),
     getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
@@ -48,11 +51,15 @@ router.get("/drink/:id?", async (req, res) => {
   });
 });
 
-/* POST comments to drink page */
-router.post("/", async function(req, res) {
+router.post("/", async function (req, res) {
   console.log("req body:", req.body);
   const profile_id = req.session.profile_id;
-  const { drink_id, comment_title, comment_review, rating } = req.body;
+  const {
+    drink_id,
+    comment_title,
+    comment_review,
+    rating
+  } = req.body;
   const redirectUrl = `/drink/${drink_id}`;
   const postData = await drinkModel.addComment(
     profile_id,
@@ -61,13 +68,18 @@ router.post("/", async function(req, res) {
     comment_review,
     drink_id
   );
-
+  if (rating == 5 || rating == 4) {
+    const favoriteData = await favoriteModel.addFavorite(profile_id, drink_id);
+  }
   res.redirect(redirectUrl);
+  res.sendStatus(200);
 });
 
 /* GET Search Results page */
 router.get("/search/:cocktailName?", async (req, res) => {
-  const { cocktailName } = req.params;
+  const {
+    cocktailName
+  } = req.params;
   const drinkData = await drinkModel.searchCocktails(cocktailName);
 
   res.render("template", {
@@ -84,9 +96,13 @@ router.get("/search/:cocktailName?", async (req, res) => {
 
 /* POST redirect search to Search Results page */
 router.post("/search/:cocktailName?", async (req, res) => {
-  const { cocktailName } = req.body;
-  const redirectUrl = `/search/${cocktailName}`;
-  !!cocktailName ? res.redirect(redirectUrl) : res.redirect("/");
+  const {
+    cocktailName
+  } = req.body;
+  const url = `/search/${cocktailName}`;
+  !!cocktailName ? res.redirect(url) : res.redirect("/");
 });
+
+
 
 module.exports = router;

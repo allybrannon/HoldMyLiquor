@@ -24,7 +24,7 @@
         <p>${drinkData.strInstructions}</p>
     </div>
 </div>
-
+​
 <div class="container-lg text-white">
   ${!!sessionData.is_logged_in ? `
       <h2>Leave your comments and drink rating:</h2>
@@ -63,7 +63,7 @@
       ` : `<h4>Please login to submit comments and ratings</h4>
           ` }
     </div>
-
+​
 <div class="container-lg text-white">
       ${getComments.map(comment => { return `
         <h2>User Comments</h2>
