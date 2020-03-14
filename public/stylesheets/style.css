@@ -22,18 +22,19 @@ a {
 }
 
 .main {
-  padding-top: 100px;
+  padding-top: 75px;
 }
+
 .action-hover-link {
   padding: 3px 5px;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 .action-hover-link:hover {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   font-size: 1.05em;
-  margin: auto;
+  text-decoration: none;
 }
 
 .container-lg {
@@ -110,4 +111,17 @@ label.star:before {
 
 .user-comment {
   text-decoration: underline;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 250px;
+}
+
+.no-bg {
+  background-color: rgba(255, 255, 255, 0) !important;
 }
