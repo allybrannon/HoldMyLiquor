@@ -50,16 +50,16 @@
 
       <p>Rate this drink:</p>
       <div class="stars form-group">
-        <input class="star star-1" id="star-1" type="radio" value=5 name="rating"/>
-        <label class="star star-1" for="star-1"></label>
-        <input class="star star-2" id="star-2" type="radio" value=4 name="rating"/>
-        <label class="star star-2" for="star-2"></label>
+        <input class="star star-1" id="star-5" type="radio" value=5 name="rating"/>
+        <label class="star star-1" for="star-5"></label>
+        <input class="star star-2" id="star-4" type="radio" value=4 name="rating"/>
+        <label class="star star-2" for="star-4"></label>
         <input class="star star-3" id="star-3" type="radio" value=3 name="rating"/>
         <label class="star star-3" for="star-3"></label>
-        <input class="star star-4" id="star-4" type="radio" value=2 name="rating"/>
-        <label class="star star-4" for="star-4"></label>
-        <input class="star star-5" id="star-5" type="radio" value=1 name="rating"/>
-        <label class="star star-5" for="star-5"></label>
+        <input class="star star-4" id="star-2" type="radio" value=2 name="rating"/>
+        <label class="star star-4" for="star-2"></label>
+        <input class="star star-5" id="star-1" type="radio" value=1 name="rating"/>
+        <label class="star star-5" for="star-1"></label>
       </div>
       
       <p><button type="submit" class="btn btn-outline-success my-2 my-sm-0">Save</button></p>
@@ -69,12 +69,13 @@
     </div>
 ​
 <div class="container-lg text-white">
-        <h2>User Comments</h2>
+      <h3 class="user-comment">User Comments</h3>
       ${getComments.map(comment => { return `
-        <h3>Comment Title: ${comment.title}</h3>
-        <p>Review: ${comment.review}</p>
-        <p>User Rating: ${`<i class="fas fa-star text-warning"></i>`.repeat(Number(comment.rating))}</p>
-        <p>User Name: ${comment.user_name}</p>
-        
+        <p><strong>Comment Title: </strong>${comment.title}</p>
+        <p><strong>Review: </strong>${comment.review}</p>
+        <p><strong>User Rating: </strong>${`<i class="fas fa-star text-warning"></i>`.repeat(Number(comment.rating))}</p>
+        <p><strong>User Name: </strong>${comment.user_name}</p>
+        <hr>
         ` }).join('')}
+        
 </div>

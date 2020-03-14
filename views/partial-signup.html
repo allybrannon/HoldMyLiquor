@@ -1,22 +1,44 @@
 <div class="container-lg text-white">
   <form action="/user/signup" method="POST">
-    <label>First Name
-      <input type="text" name="first_name" />
+    <label
+      >First Name
+      <input
+        type="text"
+        name="first_name"
+        class="form-control"
+        placeholder="first name"
+      />
     </label>
     <label>
       Last Name
-      <input type="text" name="last_name" />
+      <input
+        type="text"
+        name="last_name"
+        class="form-control"
+        placeholder="last name"
+      />
     </label>
-    <label>User Name
-      <input type="text" name="user_name" />
+    <label
+      >User Name
+      <input
+        type="text"
+        name="user_name"
+        class="form-control"
+        placeholder="username"
+      />
     </label>
-    <label>Password
-      <input type="password" name="password" />
+    <label
+      >Password
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="password"
+      />
     </label>
-    <button type="submit">Register</button>
+    <br />
+    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">
+      Register
+    </button>
   </form>
-
-  <a href="/">Return to Homepage</a>
-  <br />
-  <a href="/user/login">Login</a>
 </div>
