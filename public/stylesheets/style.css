@@ -59,7 +59,7 @@ a {
   justify-content: space-evenly;
   align-items: start;
   flex-wrap: wrap;
-  background: rgb(233, 233, 233);
+  background: rgb(255, 255, 255);
   border-radius: 4px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -74,8 +74,11 @@ input.star {
 }
 
 label.star {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 1;
   float: right;
-  padding: 10px;
+  padding: 5px;
   font-size: 36px;
   color: rgb(82, 79, 79);
   transition: all 0.2s;
@@ -103,4 +106,8 @@ label.star:hover {
 label.star:before {
   content: "\f006";
   font-family: FontAwesome;
+}
+
+.user-comment {
+  text-decoration: underline;
 }
