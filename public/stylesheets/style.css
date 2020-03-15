@@ -146,3 +146,7 @@ hr {
 .list-group-item.list-group-item-action {
   background: rgba(255, 255, 255, 0.7);
 }
+
+.background_404 {
+  background-image: url(/../404pagepic.jpg.jpg);
+}
