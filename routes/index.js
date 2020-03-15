@@ -18,9 +18,7 @@ router.get("/", async (req, res) => {
 
 /* GET drink page. */
 router.get("/drink/:id?", async (req, res) => {
-  let {
-    id
-  } = req.params;
+  let { id } = req.params;
   let drinkData = await drinkModel.getOneCocktail(id),
     getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
@@ -102,6 +100,34 @@ router.post("/search/:cocktailName?", async (req, res) => {
     console.error("ERROR: ", error);
     res.redirect("/");
   }
+});
+
+/* GET Explore page */
+router.get("/explore/:letter?", async (req, res) => {
+  let { letter } = req.params;
+  let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+  let exploreData = await drinkModel.exploreCocktails(letter);
+
+  res.render("template", {
+    locals: {
+      title: "Explore",
+      sessionData: req.session,
+      alphabet: alphabet,
+      exploreData: exploreData
+    },
+    partials: {
+      partial: "partial-explore"
+    }
+  });
+});
+
+/* GET Random Results page */
+router.get("/random", async (req, res) => {
+  let randomCocktail = await drinkModel.getRandomCocktail();
+  console.log(randomCocktail);
+  let cocktailId = randomCocktail.drinks[0].idDrink;
+
+  res.redirect(`/drink/${cocktailId}`);
 });
 
 module.exports = router;
