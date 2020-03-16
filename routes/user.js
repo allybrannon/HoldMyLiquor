@@ -36,7 +36,7 @@ router.post("/login", async function (req, res, next) {
 
   const profile = new ProfileModel(null, null, null, user_name, password);
   const loginResponse = await profile.loginUser();
-  console.log("login response is", loginResponse);
+ 
 
   if (!!loginResponse.isValid) {
     req.session.is_logged_in = loginResponse.isValid;

@@ -12,10 +12,20 @@ class Favorite {
     static async addFavorite(profile_id, drink_id) {
         try {
             const response = await db.one(`INSERT INTO favorite (profile_id, drink_id) VALUES ($1, $2) RETURNING id;`, [profile_id, drink_id]);
-            console.log('Favorite RESPONSE =', response);
+
             return response;
         } catch (error) {
             console.error('ERROR', error);
+            return error;
+        }
+    }
+    static async getUserFavorites(profile_id){
+        try {
+            const response = await db.any(`SELECT DISTINCT fav.drink_id, com.review, com.rating from profile pro JOIN favorite fav ON pro.id = fav.profile_id Join comment com ON fav.profile_id = com.profile_id where pro.id = ${profile_id};`)
+            console.log
+            return response;
+        } catch (error) {
+            console.error("ERROR", error);
             return error;
         }
     }

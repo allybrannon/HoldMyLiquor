@@ -5,14 +5,20 @@ const express = require("express"),
 
 
 
-router.post("/", async (req, res) => {
-    const {
-        profile_id,
-        drink_id,
-    } = req.body;
-    const response = await favoriteModel.addFavorite();
-    return response;
-});
+
+router.get("/user/profile/:${sessionData.profile_id}", async (req, res)=>{
+    const drinkDATA = await favoriteModel.getUserFavorites();
+   
+    res.render("template", {
+        locals: {
+            title: "Profile Page",
+            drinkDATA: drinkDATA
+        },
+        partials:{
+            partial: 'partial-profile'
+        }
+    })
+})
 
 
 module.exports = router
