@@ -6,7 +6,7 @@ const express = require("express"),
 /* GET home page. */
 router.get("/", async (req, res) => {
   const id = req.session.profile_id;
-  const favoriteData = await favoriteModel.getUserFavorites(id)
+  const favoriteData = await favoriteModel.getListOfUserFavorites(id)
   console.log("favorite data =", favoriteData);
   res.render("template", {
     locals: {
