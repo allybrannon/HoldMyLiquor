@@ -28,11 +28,24 @@ class DrinkModel {
     }
   }
 
+  static async getOneAvgRating(id) {
+    try {
+      let avgRating = await db.one(
+        `SELECT AVG(comment.rating) FROM comment
+        WHERE comment.drink_id = ${id};`
+        );
+      return avgRating;
+    } catch (error) {
+      console.error("ERROR:", error);
+      return error;
+    }
+  }
+
   static async addComment(profile_id, rating, title, review, drink_id) {
     try {
       const response = await db.one(
         `INSERT INTO comment (profile_id, rating, title, review, drink_id)
-                VALUES ($1,$2,$3,$4,$5) RETURNING id`,
+        VALUES ($1,$2,$3,$4,$5) RETURNING id`,
         [profile_id, rating, title, review, drink_id]
       );
       return response;

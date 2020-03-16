@@ -1,4 +1,6 @@
 <h2 class="text-white">${drinkData.strDrink}</h2>
+<p class="text-white">${!!avgRating.avg ? `<i class="fas fa-star
+text-warning"></i>`.repeat(Number(avgRating.avg)) : `No ratings yet.`}</p>
 <p class="text-white">Tags:
   ${!!drinkData.strAlcoholic ? `<span class="badge
   badge-secondary">${drinkData.strAlcoholic}</span>` : ``}
