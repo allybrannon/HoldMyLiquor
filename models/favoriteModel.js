@@ -26,7 +26,6 @@ class Favorite {
             const response = await db.any(`
             SELECT DISTINCT drink_id FROM favorite 
             WHERE profile_id = ${profile_id};`)
-            console.log(response);
             return response;
         } catch (error) {
             console.error("ERROR:", error);
@@ -34,17 +33,21 @@ class Favorite {
         }
     };
 
-    // static async getUserFavoriteComments(profile_id){
-    //     try {
-    //         response.map(favorite => {
-
-    //         })
-    //     } catch (error) {
-    //         console.error("ERROR:", error);
-    //         return error;
-    //     }
-    // }
-
+    static async getListOfUserFavorites(profile_id) {
+        try {
+            const response = await db.any(`
+            SELECT DISTINCT comment.profile_id, comment.drink_id, comment.title,
+            comment.review, comment.rating FROM favorite
+            JOIN comment ON favorite.profile_id = comment.profile_id
+            WHERE comment.profile_id = ${ profile_id }
+            ORDER BY rating DESC LIMIT 5;`);
+            return response;
+        } catch (error) {
+            console.error("ERROR: ", error);
+            return error;
+        }
+    };
+    
     static async getUserProfile(id) {
         try {
             const response = await db.any(`

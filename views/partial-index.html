@@ -12,15 +12,6 @@
     `: `` }
   </div>
   <div class="hero-container">
-    ${!!sessionData.is_logged_in ? `
-    <h2 class="text-white">Here are some of your favorite drinks...</h2>
-    <ul>
-      ${favoriteData.map(drink =>` <li class="text-white"><a href="../drink/${drink.drink_id}"
-          class="text-white">${drink.drink_id}</a></li>`).join('')}
-    </ul>
-    `: `` }
-  </div>
-  <div class="hero-container">
     <div class="hero-container text-white">
       <h4 class="d-flex justify-content-center flex-wrap align-items-center">
         <a class="text-white action-hover-link mx-4" href="/explore">Explore</a>
@@ -30,5 +21,19 @@
         <a class="text-white action-hover-link mx-4" href="/about">About</a>
       </h4>
     </div>
+  </div>
+  <div class="hero-container">
+    ${!!sessionData.is_logged_in ? `
+    <h2 class="text-white">Here are some of your favorite drinks!:</h2>
+    <div class="list-group">
+      ${favoriteData.map(drink =>`
+        <a href="/drink/${drink.idDrink}" class="list-group-item
+                list-group-item-action d-flex align-items-center justify-content-start">
+          <img class="img-thumbnail" src="${drink.strDrinkThumb}" />
+          <h5 class="ml-2">${drink.strDrink}</h5>
+        </a>
+      `).join('')}
+    </div>
+    `: `` }
   </div>
 </div>
