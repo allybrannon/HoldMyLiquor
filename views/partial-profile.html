@@ -1,20 +1,30 @@
-<div class="profile container drink-container">
-    <h1 class="text-white underline"><u>Profile Page:</u></h1>
-    <br>
-    <h3 class="text-white">${sessionData.user_name}</h3>
-    <br>
-    <h2 class="text-white"><u>Favorite Drinks:</u></h2>
-    <br>
-    <ol>
-        ${drinkData.map(drink =>` <li class="text-white">${drink.drink_id}</li>`).join('')}
-    </ol>
-    <br>
-    <h2 class="text-white"><u>Reviews:</u></h2>
-    <ol>
+<h2 class="text-white">Profile Page:</h2>
+<div class="container-lg drink-info">
+    <div class="drink-container">
+        <image class="img-thumbnail" src="/images/shaken-stirred-green.png" />
+    </div>
+    <div class="drink-container">
+        <h3 class="">Username: ${profileData[0].user_name}</h3>
+        <h3 class="">Name: ${profileData[0].first_name} ${profileData[0].last_name}</h3>
+    </div>
+    </div>
+    <h3 class="text-white">
+        <u>Favorite Drinks:</u>
+    </h3>
+    <ul>
+        ${drinkData.map(drink =>` <li class="text-white"><a
+        href="../drink/${drink.drink_id}" class="text-white">${drink.drink_id}</a></li>`).join('')}
+    </ul>
+    <h3 class="text-white">
+        <u>Reviews:</u>
+    </h3>
+    <!-- <ol>
         ${drinkData.map(drink =>` <li class="text-white">${drink.review}</li>`).join('')}
-    </ol>
-        <h2 class="text-white"><u>Rating(in stars):</u></h2>
-        <ol>
-            ${drinkData.map(drink =>` <li class="text-white">${drink.rating}</li>`).join('')}
-        </ol>
+    </ol> -->
+    <h3 class="text-white">
+        <u>Rating(in stars):</u>
+    </h3>
+    <!-- <ol>
+        ${drinkData.map(drink =>` <li class="text-white">${drink.rating}</li>`).join('')}
+    </ol> -->
 </div>
