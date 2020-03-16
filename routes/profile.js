@@ -8,7 +8,8 @@ router.get("/:id?", async (req, res) => {
     const drinkData = await favoriteModel.getUserFavorites(id);
 
     console.log(profileData);
-    
+    console.log(drinkData);
+
     res.render("template", {
         locals: {
             title: "Profile Page",
