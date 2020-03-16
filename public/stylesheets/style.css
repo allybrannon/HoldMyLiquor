@@ -178,3 +178,11 @@ label.star:before {
   min-width: 90px;
   width: 90px;
 }
+
+
+.profile{
+  text-align: center;
+  font-size: 1.5em;
+  list-style: inside;
+}
+
