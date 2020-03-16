@@ -32,12 +32,12 @@ app.set("view engine", "html");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
-const favoriteRouter = require("./routes/favorite");
+const profileRouter = require("./routes/profile");
 const aboutRouter = require("./routes/about");
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
-app.use("/favorite", favoriteRouter);
+app.use("/profile", profileRouter);
 app.use("/about", aboutRouter);
 app.use(function(req, res) {
   res.status(404).render("template", {
