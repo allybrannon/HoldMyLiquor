@@ -5,10 +5,14 @@ const express = require("express"),
 
 /* GET home page. */
 router.get("/", async (req, res) => {
+  const id = req.session.profile_id;
+  const favoriteData = await favoriteModel.getUserFavorites(id)
+  console.log("favorite data =", favoriteData);
   res.render("template", {
     locals: {
       title: "HOME",
-      sessionData: req.session
+      sessionData: req.session,
+      favoriteData: favoriteData
     },
     partials: {
       partial: "partial-index"
