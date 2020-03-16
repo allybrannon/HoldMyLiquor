@@ -13,6 +13,7 @@ class ProfileModel {
   checkPassword(hashedPassword) {
     return bcrypt.compareSync(this.password, hashedPassword);
   }
+
   async addUser() {
     try {
       const response = await db.one(
@@ -25,6 +26,7 @@ class ProfileModel {
       return error;
     }
   }
+
   async loginUser() {
     console.log("logging in user");
     try {

@@ -3,7 +3,7 @@ const express = require("express"),
   bcrypt = require("bcryptjs"),
   ProfileModel = require("../models/userModel");
 
-/* GET users listing. */
+/* GET users signup. */
 router.get("/signup", async (req, res, next) => {
   res.render("template", {
     locals: {
@@ -16,6 +16,7 @@ router.get("/signup", async (req, res, next) => {
   });
 });
 
+/* GET users login. */
 router.get("/login", async (req, res, next) => {
   res.render("template", {
     locals: {
@@ -28,13 +29,12 @@ router.get("/login", async (req, res, next) => {
   });
 });
 
+/* POST users login. */
 router.post("/login", async function(req, res, next) {
   const { user_name, password } = req.body;
-
   const profile = new ProfileModel(null, null, null, user_name, password);
   const loginResponse = await profile.loginUser();
  
-
   if (!!loginResponse.isValid) {
     req.session.is_logged_in = loginResponse.isValid;
     req.session.profile_id = loginResponse.profile_id;
@@ -47,6 +47,7 @@ router.post("/login", async function(req, res, next) {
   }
 });
 
+/* POST users signup. */
 router.post("/signup", function(req, res, next) {
   const { first_name, last_name, user_name, password } = req.body;
 
@@ -65,6 +66,7 @@ router.post("/signup", function(req, res, next) {
   res.status(200).redirect("/user/login");
 });
 
+/* GET users logout session. */
 router.get("/logout", function(req, res) {
   req.session.destroy();
   res.redirect("/");
