@@ -1,0 +1,20 @@
+<div class="profile container drink-container">
+    <h1 class="text-white underline"><u>Profile Page:</u></h1>
+    <br>
+    <h3 class="text-white">${sessionData.user_name}</h3>
+    <br>
+    <h2 class="text-white"><u>Favorite Drinks:</u></h2>
+    <br>
+    <ol>
+        ${drinkData.map(drink =>` <li class="text-white">${drink.drink_id}</li>`).join('')}
+    </ol>
+    <br>
+    <h2 class="text-white"><u>Reviews:</u></h2>
+    <ol>
+        ${drinkData.map(drink =>` <li class="text-white">${drink.review}</li>`).join('')}
+    </ol>
+        <h2 class="text-white"><u>Rating(in stars):</u></h2>
+        <ol>
+            ${drinkData.map(drink =>` <li class="text-white">${drink.rating}</li>`).join('')}
+        </ol>
+</div>
