@@ -28,11 +28,8 @@ router.get("/login", async (req, res, next) => {
   });
 });
 
-router.post("/login", async function (req, res, next) {
-  const {
-    user_name,
-    password
-  } = req.body;
+router.post("/login", async function(req, res, next) {
+  const { user_name, password } = req.body;
 
   const profile = new ProfileModel(null, null, null, user_name, password);
   const loginResponse = await profile.loginUser();
@@ -50,13 +47,8 @@ router.post("/login", async function (req, res, next) {
   }
 });
 
-router.post("/signup", function (req, res, next) {
-  const {
-    first_name,
-    last_name,
-    user_name,
-    password
-  } = req.body;
+router.post("/signup", function(req, res, next) {
+  const { first_name, last_name, user_name, password } = req.body;
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
@@ -73,7 +65,7 @@ router.post("/signup", function (req, res, next) {
   res.status(200).redirect("/user/login");
 });
 
-router.get("/logout", function (req, res) {
+router.get("/logout", function(req, res) {
   req.session.destroy();
   res.redirect("/");
 });

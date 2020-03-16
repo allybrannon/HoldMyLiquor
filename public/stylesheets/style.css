@@ -165,9 +165,6 @@ label.star:before {
   background: rgba(255, 255, 255, 0.7);
 }
 
-.background_404 {
-  background-image: url(/../404pagepic.jpg.jpg);
-}
 .form-flex {
   display: flex;
   flex-direction: column;

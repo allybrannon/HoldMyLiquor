@@ -1,7 +1,7 @@
 const express = require("express"),
   router = express.Router(),
   drinkModel = require("../models/drinkModel"),
-  favoriteModel = require('../models/favoriteModel');
+  favoriteModel = require("../models/favoriteModel");
 
 /* GET home page. */
 router.get("/", async (req, res) => {
@@ -49,15 +49,10 @@ router.get("/drink/:id?", async (req, res) => {
   });
 });
 
-router.post("/", async function (req, res) {
+router.post("/", async function(req, res) {
   console.log("req body:", req.body);
   const profile_id = req.session.profile_id;
-  const {
-    drink_id,
-    comment_title,
-    comment_review,
-    rating
-  } = req.body;
+  const { drink_id, comment_title, comment_review, rating } = req.body;
   const redirectUrl = `/drink/${drink_id}`;
   const postData = await drinkModel.addComment(
     profile_id,
@@ -105,7 +100,34 @@ router.post("/search/:cocktailName?", async (req, res) => {
 /* GET Explore page */
 router.get("/explore/:letter?", async (req, res) => {
   let { letter } = req.params;
-  let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+  let alphabet = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ];
   let exploreData = await drinkModel.exploreCocktails(letter);
 
   res.render("template", {
