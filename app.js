@@ -6,7 +6,6 @@ const express = require("express"),
   session = require("express-session"),
   FileStore = require("session-file-store")(session);
 
-
 const app = express();
 
 app.use(logger("dev"));
@@ -38,7 +37,18 @@ const aboutRouter = require("./routes/about");
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
-app.use('/favorite', favoriteRouter);
+app.use("/favorite", favoriteRouter);
 app.use("/about", aboutRouter);
+app.use(function(req, res) {
+  res.status(404).render("template", {
+    locals: {
+      title: "BROKEN",
+      sessionData: req.session
+    },
+    partials: {
+      partial: "partial-page404"
+    }
+  });
+});
 
 module.exports = app;

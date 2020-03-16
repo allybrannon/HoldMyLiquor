@@ -1,7 +1,7 @@
 const express = require("express"),
   router = express.Router();
 
-router.get("/", function (req, res) {
+router.get("/", function(req, res) {
   res.render("template", {
     locals: {
       title: "About",
