@@ -1,10 +1,10 @@
 # HoldMyLiquor
 
-Summary...
+If you have ever wanted to know the recipe for making a great drink (alcoholic or non-alcoholic), this is your site! You can easily search for a drink by name and also new and exciting beverages by search. For example, searching ‘Margarita’ will pull up ‘Margarita’, ‘Blue Margarita, ‘Tommy’s Margarita’, and more.
 
 ## Description
 
-A little more description of what the project is about
+This site is built using an API from Cocktail DB API. We used the drink recipe info to create a site that is built for searching, exploring, and rating beverages. As an unregistered user, you can still peruse the drinks using the Explore (search for a drink by alphabetical letter) and the Random (randomly generates a new drink with recipe) links. When the user registers and logs in, they are able to rate a beverage. They can leave specific comments allowing other users to see their comments and ratings. As a user, you can login and also see your Favorite Drinks and Reviews.
 
 ## Tools used:
 
@@ -14,11 +14,13 @@ A little more description of what the project is about
 
 ## Screenshots
 
-Include logo/demo screenshot etc.
+<img src="/images/HoldMyLiquorHome.png" width="100">
+<img src="/images/HoldMyLiquorExplore.png" width="100">
+<img src="/images/HoldMyLiquorMargarita.png" width = "100">
 
 ## Features
 
-What makes your project stand out?
+This project incorporates both backend and frontend. We were able to use a reliable API to create a useful site for finding cocktails based on searching and exploring. We made a mobile-first designed site with Bootstrap, Express, es6Renderer and PostgreSQL. This site is functional because there are so many options for beverages both alcoholic and non, and the user can load their information and store it in the database.
 
 ## Installation
 
@@ -28,15 +30,17 @@ What makes your project stand out?
 
 ### Setup
 
- install npm packages
+install npm packages
+
 ```
 $ npm i
 ```
 
 - Create postgreSQL database based on schema ("SQLSchema.sql")
-- Connect database info accordingly via .env file 
+- Connect database info accordingly via .env file
 
-*Sample/template .env below:*
+_Sample/template .env below:_
+
 ```
 DB_HOST=YOUR DB_HOST_HERE
 DB_NAME=YOUR_DB_NAME_HERE
@@ -46,6 +50,7 @@ PORT=3000
 ```
 
 - run program
+
 ```
 $ npm run dev
 ```
