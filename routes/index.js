@@ -20,9 +20,12 @@ router.get("/", async (req, res) => {
 router.get("/drink/:id?", async (req, res) => {
   let { id } = req.params;
   let drinkData = await drinkModel.getOneCocktail(id),
+    avgRating = await drinkModel.getOneAvgRating(id),
     getComments = await drinkModel.getAllCommentsByID(id),
     ingredientData = [],
     measureData = [];
+
+  console.log(avgRating);
 
   drinkData = drinkData.drinks[0];
   for (let [key, value] of Object.entries(drinkData)) {
@@ -41,6 +44,7 @@ router.get("/drink/:id?", async (req, res) => {
       drinkData: drinkData,
       ingredientData: ingredientData,
       measureData: measureData,
+      avgRating: avgRating,
       getComments: getComments
     },
     partials: {
