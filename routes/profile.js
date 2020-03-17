@@ -4,30 +4,19 @@ const express = require("express"),
     favoriteModel = require("../models/favoriteModel");
 
 
-router.get("/:id?", async (req, res) => {
-    const { id } = req.params;
-    const profileData = await favoriteModel.getUserProfile(id);
-    let getDrinkIds = [],
-        drinkData = [];
-    if (!!req.session.is_logged_in) {
-        getDrinkIds = await favoriteModel.getUserFavorites(profile_id);
-        drinkData = getDrinkIds.map(async favorite => {
-            await drinkModel.getOneCocktail(favorite.drink_id)
-        });
-    }
-
-    drinkData = getDrinkIds[0].map(async favorite => {
-        await drinkModel.getOneCocktail(favorite.drink_id)
-    })
-
-    console.log(drinkData);
+router.get("/:profile_id?", async (req, res) => {
+    const { profile_id } = req.params;
+    const profileData = await favoriteModel.getUserProfile(profile_id);
+    const favoriteData = await favoriteModel.getFavoritesDrinkDetails(profile_id);
+    const commentData = await favoriteModel.getUserComments(profile_id);
 
     res.render("template", {
         locals: {
             title: "Profile Page",
             sessionData: req.session,
             profileData: profileData,
-            drinkData: drinkData
+            favoriteData: favoriteData,
+            commentData: commentData
         },
         partials: {
             partial: "partial-profile"

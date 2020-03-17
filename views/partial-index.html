@@ -14,25 +14,26 @@
   <div class="hero-container">
     <div class="hero-container text-white">
       <h4 class="d-flex justify-content-center flex-wrap align-items-center">
-        <a class="text-white action-hover-link mx-4" href="/explore">Explore</a>
+        <a class="text-white action-hover-link mx-4" href="../explore">Explore</a>
         <p class="my-4"></p>
-        <a class="text-white action-hover-link mx-4" href="/random">Random</a>
+        <a class="text-white action-hover-link mx-4" href="../random">Random</a>
         <p class="my-4"></p>
-        <a class="text-white action-hover-link mx-4" href="/about">About</a>
+        <a class="text-white action-hover-link mx-4" href="../about">About</a>
       </h4>
     </div>
   </div>
-  <div class="hero-container">
+  <div>
     ${!!sessionData.is_logged_in ? `
-    <h2 class="text-white">Here are some of your favorite drinks!:</h2>
-    <div class="list-group">
-      ${favoriteData.map(drink =>`
-        <a href="/drink/${drink.idDrink}" class="list-group-item
-                list-group-item-action d-flex align-items-center justify-content-start">
-          <img class="img-thumbnail" src="${drink.strDrinkThumb}" />
-          <h5 class="ml-2">${drink.strDrink}</h5>
-        </a>
-      `).join('')}
+    <h2 class="text-white text-center">Here are some of your favorites:</h2>
+    <div class="row mx-0 justify-content-center">
+    ${favoriteData.map(drink =>`
+    <div class="card text-center partial-bg" style="width: 175;">
+      <img class="card-img-top img-thumbnail" src="${drink.drinks[0].strDrinkThumb}" alt="${drink.drinks[0].strDrink}" />
+      <div class="card-body">
+        <p class="card-text">${drink.drinks[0].strDrink}</p>
+      </div>
+    </div>
+    `).join('')}
     </div>
     `: `` }
   </div>

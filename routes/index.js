@@ -5,20 +5,12 @@ const express = require("express"),
 
 /* GET home page. */
 router.get("/", async (req, res) => {
-  const profile_id = req.session.profile_id;
-  let getDrinkIds = [],
-    favoriteData = [];
+  let profile_id = req.session.profile_id;
+  let favoriteData = [];
   
-  if (!!req.session.is_logged_in) {
-    getDrinkIds = await favoriteModel.getUserFavorites(profile_id);
-
-    await getDrinkIds.map(async favorite => {
-      let favoriteCocktail = await drinkModel.getOneCocktail(favorite.drink_id);
-      favoriteData.push(favoriteCocktail.drinks[0]);
-    });
+  if (!!profile_id) {
+    favoriteData = await favoriteModel.getFavoritesDrinkDetails(profile_id);
   };
-
-  console.log("Cocktails: ", favoriteData);
 
   res.render("template", {
     locals: {

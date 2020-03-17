@@ -1,4 +1,4 @@
-<div class="container-lg text-white d-flex flex-column justify-content-center">
+<div class="container-lg text-white d-flex flex-column justify-content-center align-items-center">
   <div class="hero-container">
     <h2>Don't know what you want?</h2>
     <h4>Browse drinks below:</h4>
@@ -9,10 +9,10 @@
     class="text-white">${letter}</a>`).join(" ")}
     </p>
   </div>
-  <div class="list-group">
+  <div class="list-group ">
     ${!!exploreData.drinks ? exploreData.drinks.map(drink => `
     <a href="../drink/${drink.idDrink}" class="list-group-item
-    list-group-item-action d-flex align-items-center justify-content-start">
+    list-group-item-action d-flex align-items-center justify-content-start partial-bg">
       <img class="img-thumbnail mx-2" src="${drink.strDrinkThumb}"/>
       <h4>${drink.strDrink}</h4>
     </a>

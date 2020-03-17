@@ -8,79 +8,81 @@ text-warning"></i>`.repeat(Number(avgRating.avg)) : `No ratings yet.`}</p>
   badge-secondary">${drinkData.strIBA}</span>` : `<span class="badge
     badge-secondary">Unknown Category</span>`}
 </p>
-<div class="container-lg drink-info">
-    <div class="drink-container">
-        <image class="img-fluid" src="${drinkData.strDrinkThumb}" />
-    </div>
-    <div class="drink-container">
-        <h3>Ingredients</h3>
-        <ul>
-            ${ingredientData.map( ingredient => `${!!ingredient ? `
-            <li>${ingredient}` : ``}
-                ${!!measureData[ingredientData.indexOf(ingredient)] ?
-                `- ${measureData[ingredientData.indexOf(ingredient)]}</li>` : `</li>` }`).join("")}
-        </ul>
-        <hr>
-        <h3>Instructions</h3>
-        <p><em>Recommended: serve in a ${drinkData.strGlass}</em></p>
-        <p>${drinkData.strInstructions}</p>
-    </div>
+<div class="container-lg drink-info partial-bg">
+  <div class="drink-container">
+      <image class="img-fluid" src="${drinkData.strDrinkThumb}" />
+  </div>
+  <div class="drink-container">
+      <h3 class="pl-1">Ingredients</h3>
+      <ul>
+          ${ingredientData.map( ingredient => `${!!ingredient ? `
+          <li>${ingredient}` : ``}
+              ${!!measureData[ingredientData.indexOf(ingredient)] ?
+              `- ${measureData[ingredientData.indexOf(ingredient)]}</li>` : `</li>` }`).join("")}
+      </ul>
+      <hr class="mx-auto">
+      <h3 class="pl-1">Instructions</h3>
+      <p class="pl-1"><em>Recommended: serve in a ${drinkData.strGlass}</em></p>
+      <p class="pl-1">${drinkData.strInstructions}</p>
+  </div>
 </div>
 ​
 <div class="container-lg text-white">
   ${!!sessionData.is_logged_in ? `
-      <h3>Leave your comments and drink rating:</h3>
-      <form action="/" method="POST">
+    <h3>Leave your comments and drink rating:</h3>
+    <form action="/" method="POST">
 
-      <div class="form-group">
-        <input type="hidden" class="form-control" name="drink_id" value ="${drinkData.idDrink}"/>
-          <label
-            >Title
-            <input type="text" class="form-control" name="comment_title" placeholder="Comment Title" />
-          </label>
-      </div>
-
-      <div class="form-group">
+    <div class="form-group">
+      <input type="hidden" class="form-control" name="drink_id" value ="${drinkData.idDrink}"/>
         <label
-          >My Comments:
-          <textarea
-            name="comment_review" class="form-control"
-            placeholder="My review of this drink..."
-          ></textarea>
+          >Title
+          <input type="text" class="form-control" name="comment_title" placeholder="Comment Title" />
         </label>
-      </div>
-
-      <p>Rate this drink:</p>
-      <div class="stars form-group">
-        <input class="star star-1" id="star-5" type="radio" value=5 name="rating"/>
-        <label class="star star-1" for="star-5"></label>
-        <input class="star star-2" id="star-4" type="radio" value=4 name="rating"/>
-        <label class="star star-2" for="star-4"></label>
-        <input class="star star-3" id="star-3" type="radio" value=3 name="rating"/>
-        <label class="star star-3" for="star-3"></label>
-        <input class="star star-4" id="star-2" type="radio" value=2 name="rating"/>
-        <label class="star star-4" for="star-2"></label>
-        <input class="star star-5" id="star-1" type="radio" value=1 name="rating"/>
-        <label class="star star-5" for="star-1"></label>
-      </div>
-      
-      <p><button type="submit" class="btn btn-outline-success my-2 my-sm-0">Save</button></p>
-    </form>
-      ` : `<h4>Please <a href="/user/login" class="text-white">LOGIN</a> to submit comments and ratings</h4>
-          ` }
     </div>
+
+    <div class="form-group">
+      <label
+        >My Comments:
+        <textarea
+          name="comment_review" class="form-control"
+          placeholder="My review of this drink..."
+        ></textarea>
+      </label>
+    </div>
+
+    <p>Rate this drink:</p>
+    <div class="stars form-group">
+      <input class="star star-1" id="star-5" type="radio" value=5 name="rating"/>
+      <label class="star star-1" for="star-5"></label>
+      <input class="star star-2" id="star-4" type="radio" value=4 name="rating"/>
+      <label class="star star-2" for="star-4"></label>
+      <input class="star star-3" id="star-3" type="radio" value=3 name="rating"/>
+      <label class="star star-3" for="star-3"></label>
+      <input class="star star-4" id="star-2" type="radio" value=2 name="rating"/>
+      <label class="star star-4" for="star-2"></label>
+      <input class="star star-5" id="star-1" type="radio" value=1 name="rating"/>
+      <label class="star star-5" for="star-1"></label>
+    </div>
+    
+    <p><button type="submit" class="btn btn-outline-success my-2 my-sm-0">Save</button></p>
+  </form>
+  ` : `
+    <h4>Please <a href="/user/login" class="text-white">LOGIN</a> to submit comments and ratings</h4>
+  `}
+</div>
 ​
 <div class="container-lg text-white">
-      <h3 class="user-comment">User Comments</h3>
-      ${!!getComments[0] ? `` : `<p>No comments... yet!</p>
-      <p>If you've tried this
-      drink, we want to hear from you. &#128578</p>`}
-      ${getComments.map(comment => { return `
-        <p><strong>Comment Title: </strong>${comment.title}</p>
-        <p><strong>Review: </strong>${comment.review}</p>
-        <p><strong>User Rating: </strong>${`<i class="fas fa-star text-warning"></i>`.repeat(Number(comment.rating))}</p>
-        <p><strong>User Name: </strong>${comment.user_name}</p>
-        <hr class="background-white">
-        ` }).join('')}
-        
+  <h3 class="user-comment">User Comments</h3>
+  ${!!getComments[0] ? `` : `<p>No comments... yet!</p>
+  <p>If you've tried this
+  drink, we want to hear from you. &#128578</p>`}
+  ${getComments.map(comment => { return `
+    <p>${`<i class="fas fa-star
+    text-warning"></i>`.repeat(Number(comment.rating))}</p>
+    <p><strong>"${comment.title}"</strong></p>
+    <p>"${comment.review}"</p>
+    <p><a class="text-white"
+    href="../profile/${comment.profile_id}"> -submitted by <strong>@${comment.user_name}</strong></a></p>
+    ` }).join(`<hr class="background-white">`)
+  }
 </div>
