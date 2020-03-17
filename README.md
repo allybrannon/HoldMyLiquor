@@ -14,9 +14,9 @@ This site is built using an API from Cocktail DB API. We used the drink recipe i
 
 ## Screenshots
 
-<img src="./public/images/HoldMyLiquorHome2.png" width="300">
-<img src="./public/images/HoldMyLiquorExplore2.png" width="300">
-<img src="./public/images/HoldMyLiquorMargarita2.png" width = "300">
+<img src="./public/images/HoldMyLiquorHome.png" width="300">
+<img src="./public/images/HoldMyLiquorExplore.png" width="300">
+<img src="./public/images/HoldMyLiquorMargarita.png" width = "300">
 
 ## Features
 
@@ -59,8 +59,7 @@ $ npm run dev
 
 - [Site logo](https://pixabay.com/vectors/glass-silhouette-drink-alcohol-35622/)
 - [Background](https://pixabay.com/photos/party-wine-glasses-bar-bartender-2250007/)
-- [Drink
-  Lineup](https://pixabay.com/vectors/cocktails-summer-beverages-1419481/)
+- [Drink Lineup](https://pixabay.com/vectors/cocktails-summer-beverages-1419481/)
 
 ## Authors:
 

@@ -54,7 +54,7 @@ class Favorite {
     static async getUserComments(profile_id) {
         try {
             const response = await db.any(`
-            SELECT comment.profile_id, comment.drink_id, comment.title,
+            SELECT DISTINCT comment.profile_id, comment.drink_id, comment.title,
             comment.review, comment.rating FROM favorite
             JOIN comment ON favorite.profile_id = comment.profile_id
             WHERE comment.profile_id = ${ profile_id }
