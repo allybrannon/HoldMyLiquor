@@ -10,6 +10,14 @@ a {
   text-decoration: underline;
 }
 
+.no-color {
+  color: inherit;
+}
+
+.no-color:hover {
+  color: inherit;
+}
+
 hr {
   display: flex;
   border-width: 5px;
