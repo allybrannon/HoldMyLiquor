@@ -67,6 +67,7 @@ class DrinkModel {
       console.error("ERROR:", error);
     }
   }
+  
   static async searchCocktails(cocktailName) {
     try {
       let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`;

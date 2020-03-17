@@ -1,30 +1,39 @@
 <h2 class="text-white">Profile Page:</h2>
-<div class="container-lg drink-info">
-    <div class="drink-container">
-        <image class="img-thumbnail" src="/images/shaken-stirred-green.png" />
+<div class="container-lg drink-info partial-bg">
+    <div class="">
+        <image alt="profile image" class="img-thumbnail" src="/images/shaken-stirred-green.png" />
     </div>
     <div class="drink-container">
-        <h3 class="">Username: ${profileData[0].user_name}</h3>
-        <h3 class="">Name: ${profileData[0].first_name} ${profileData[0].last_name}</h3>
+        <h3 class="pl-1">Username: ${profileData[0].user_name}</h3>
+        <h3 class="pl-1">Full name: ${profileData[0].first_name} ${profileData[0].last_name}</h3>
     </div>
+</div>
+<div class="d-flex flex-wrap justify-content-around">
+    <div class="text-white">
+        <h3 class="user-comment">Previous Comments:</h3>
+        ${!!commentData[0] ? `` : `<p>No comments... yet!</p>`}
+        ${commentData.map(comment => { return `
+        <p><strong>Drink: </strong><a class="text-white"
+        href="../drink/${comment.drink_id}">${comment.drink_id}</a></p>
+        <p>${`<i class="fas fa-star
+        text-warning"></i>`.repeat(Number(comment.rating))}</p>
+        <p><strong>"${comment.title}"</strong></p>
+        <p>"${comment.review}"</p>
+        <a class="btn btn-success py-0" role="button" href="../drink/${comment.drink_id}">LINK</a>
+        ` }).join(`
+        <hr class="background-white">`)}
     </div>
-    <h3 class="text-white">
-        <u>Favorite Drinks:</u>
-    </h3>
-    <ul>
-        ${drinkData.map(drink =>` <li class="text-white"><a
-        href="../drink/${drink.drink_id}" class="text-white">${drink.drink_id}</a></li>`).join('')}
-    </ul>
-    <h3 class="text-white">
-        <u>Reviews:</u>
-    </h3>
-    <!-- <ol>
-        ${drinkData.map(drink =>` <li class="text-white">${drink.review}</li>`).join('')}
-    </ol> -->
-    <h3 class="text-white">
-        <u>Rating(in stars):</u>
-    </h3>
-    <!-- <ol>
-        ${drinkData.map(drink =>` <li class="text-white">${drink.rating}</li>`).join('')}
-    </ol> -->
+    <div class="d-flex flex-column align-items-center">
+        <h3 class="text-white user-comment">Favorite Drinks:</h3>
+        <div class="list-group">
+            ${favoriteData.map(drink =>`
+            <a href="../drink/${drink.drinks[0].idDrink}" class="list-group-item
+            list-group-item-action d-flex align-items-center
+            justify-content-start partial-bg">
+                <img class="img-thumbnail" src="${drink.drinks[0].strDrinkThumb}" />
+                <h5 class="ml-2">${drink.drinks[0].strDrink}</h5>
+            </a>
+            `).join('')}
+        </div>
+    </div>
 </div>

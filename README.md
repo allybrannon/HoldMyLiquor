@@ -14,9 +14,9 @@ This site is built using an API from Cocktail DB API. We used the drink recipe i
 
 ## Screenshots
 
-<img src="/images/HoldMyLiquorHome.png" width="100">
-<img src="/images/HoldMyLiquorExplore.png" width="100">
-<img src="/images/HoldMyLiquorMargarita.png" width = "100">
+<img src="./public/images/HoldMyLiquorHome2.png" width="300">
+<img src="./public/images/HoldMyLiquorExplore2.png" width="300">
+<img src="./public/images/HoldMyLiquorMargarita2.png" width = "300">
 
 ## Features
 

@@ -1,9 +1,9 @@
-<div class="container-sm text-white">
-  <h2>Search Results</h2>
+<div class="container-sm text-white d-flex flex-column align-items-center">
+  <h2>Search Results:</h2>
   <div class="list-group">
     ${!!searchData.drinks ? searchData.drinks.map(drink => `
     <a href="/drink/${drink.idDrink}" class="list-group-item
-        list-group-item-action d-flex align-items-center justify-content-start">
+        list-group-item-action d-flex align-items-center justify-content-start partial-bg">
       <img class="img-thumbnail" src="${drink.strDrinkThumb}" />
       <h5 class="ml-2">${drink.strDrink}</h5>
     </a>

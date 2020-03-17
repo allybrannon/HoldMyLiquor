@@ -5,9 +5,13 @@ const express = require("express"),
 
 /* GET home page. */
 router.get("/", async (req, res) => {
-  const id = req.session.profile_id;
-  const favoriteData = await favoriteModel.getListOfUserFavorites(id)
-  console.log("favorite data =", favoriteData);
+  let profile_id = req.session.profile_id;
+  let favoriteData = [];
+  
+  if (!!profile_id) {
+    favoriteData = await favoriteModel.getFavoritesDrinkDetails(profile_id);
+  };
+
   res.render("template", {
     locals: {
       title: "HOME",
