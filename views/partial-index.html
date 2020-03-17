@@ -28,10 +28,12 @@
     <div class="row mx-0 justify-content-center">
     ${favoriteData.map(drink =>`
     <div class="card text-center partial-bg" style="width: 175;">
-      <img class="card-img-top img-thumbnail" src="${drink.drinks[0].strDrinkThumb}" alt="${drink.drinks[0].strDrink}" />
-      <div class="card-body">
-        <p class="card-text">${drink.drinks[0].strDrink}</p>
-      </div>
+      <a class="no-color" href="../drink/${drink.drinks[0].drinkId}">
+        <img class="card-img-top img-thumbnail" src="${drink.drinks[0].strDrinkThumb}" alt="${drink.drinks[0].strDrink}" />
+        <div class="card-body">
+          <p class="card-text">${drink.drinks[0].strDrink}</p>
+        </div>
+      </a>
     </div>
     `).join('')}
     </div>
