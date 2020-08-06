@@ -1,7 +1,7 @@
 # HoldMyLiquor
 
 If you have ever wanted to know the recipe for making a great drink (alcoholic or non-alcoholic), this is your site! You can easily search for a drink by name and also new and exciting beverages by search. For example, searching ‘Margarita’ will pull up ‘Margarita’, ‘Blue Margarita, ‘Tommy’s Margarita’, and more.
-
+Visit the site: https://holdmyliquor.karleypetracca.com/
 ## Description
 
 This site is built using an API from Cocktail DB API. We used the drink recipe info to create a site that is built for searching, exploring, and rating beverages. As an unregistered user, you can still peruse the drinks using the Explore (search for a drink by alphabetical letter) and the Random (randomly generates a new drink with recipe) links. When the user registers and logs in, they are able to rate a beverage. They can leave specific comments allowing other users to see their comments and ratings. As a user, you can login and also see your Favorite Drinks and Reviews.
